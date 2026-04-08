@@ -1,38 +1,96 @@
-.App {
-  text-align: center;
+.game-viewport {
+  width: 100%; height: 100vh;
+  overflow-y: auto; overflow-x: hidden;
+  background-color: #1a1a1a; position: relative;
+  font-family: 'Arial', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.map-container {
+  position: relative; width: 100%; max-width: 500px;
+  margin: 0 auto; height: 2200px; /* Картаның ұзындығын осы жерден ретте */
+  background-size: 100% auto; background-repeat: no-repeat;
+  perspective: 1000px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ТИЫННЫҢ НЕГІЗГІ ПІШІНІ */
+.coin-slot { position: absolute; width: 75px; height: 75px; z-index: 10; cursor: move; }
+
+.thick-coin {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d; transform: rotateX(60deg);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* ОЙЫН БАСТАЛҒАНДА БАРЛЫҚ ТИЫНДАР ОЙНАЙДЫ */
+.game-active .thick-coin {
+  animation: coinDance 2s infinite ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes coinDance {
+  0%, 100% { transform: rotateX(60deg) translateY(0); }
+  50% { transform: rotateX(60deg) translateY(-25px); }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.coin-layer { position: absolute; width: 100%; height: 100%; border-radius: 50%; }
+
+/* АЛТЫН ТҮСТІ (АШЫҚ) */
+.unlocked .side-1 { transform: translateZ(-2px); background: #b8860b; }
+.unlocked .side-2 { transform: translateZ(-4px); background: #966d09; }
+.unlocked .side-3 { transform: translateZ(-6px); background: #7a5807; }
+.unlocked .top-face {
+  background: radial-gradient(circle, #ffe066, #f1c40f, #b8860b);
+  border: 4px solid #fff; color: #5d4037;
+}
+
+/* КҮМІС ТҮСТІ (ЖАБЫҚ) */
+.locked .side-1 { transform: translateZ(-2px); background: #7f8c8d; }
+.locked .side-2 { transform: translateZ(-4px); background: #5d6d7e; }
+.locked .side-3 { transform: translateZ(-6px); background: #34495e; }
+.locked .top-face {
+  background: radial-gradient(circle, #bdc3c7, #95a5a6, #7f8c8d);
+  border: 4px solid #d5dbdb; color: #2c3e50;
+}
+.locked .thick-coin { opacity: 0.9; }
+
+.side-shadow { transform: translateZ(-10px); background: rgba(0,0,0,0.3); filter: blur(5px); }
+
+.top-face {
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; font-size: 28px; z-index: 10;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+}
+
+/* ЖАЛБЫРАҒАН БАЙРАҚ */
+.finish-zone { position: absolute; z-index: 20; cursor: move; }
+.waving-flag {
+  font-size: 65px; display: inline-block;
+  animation: wave 1.2s infinite ease-in-out alternate;
+  transform-origin: bottom center;
+}
+
+@keyframes wave {
+  0% { transform: skewX(-12deg) rotate(5deg); }
+  100% { transform: skewX(12deg) rotate(-5deg); }
+}
+
+/* ИНТЕРФЕЙС (START OVERLAY) */
+.start-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9); z-index: 9999;
+  display: flex; justify-content: center; align-items: center;
+  backdrop-filter: blur(10px);
+}
+.start-card {
+  text-align: center; color: white; padding: 50px;
+  border: 2px solid #f1c40f; border-radius: 40px;
+}
+.big-play-btn {
+  background: linear-gradient(#f1c40f, #d35400);
+  color: white; font-size: 28px; font-weight: bold;
+  padding: 18px 65px; border-radius: 60px; border: none;
+  cursor: pointer; box-shadow: 0 8px 0 #8b4513; margin-top: 25px;
+}
+
+.admin-panel {
+  position: fixed; left: 10px; bottom: 10px; background: rgba(0,0,0,0.85);
+  color: #0f0; padding: 10px; font-size: 10px; z-index: 1000; border-radius: 12px;
 }
