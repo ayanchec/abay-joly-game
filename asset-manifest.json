@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/abay-joly-game/static/css/main.b7545205.css",
-    "main.js": "/abay-joly-game/static/js/main.a1ccb7ed.js",
+    "main.css": "/abay-joly-game/static/css/main.fb5826a4.css",
+    "main.js": "/abay-joly-game/static/js/main.b6abacf4.js",
     "static/js/453.50236f6b.chunk.js": "/abay-joly-game/static/js/453.50236f6b.chunk.js",
     "index.html": "/abay-joly-game/index.html",
-    "main.b7545205.css.map": "/abay-joly-game/static/css/main.b7545205.css.map",
-    "main.a1ccb7ed.js.map": "/abay-joly-game/static/js/main.a1ccb7ed.js.map",
+    "main.fb5826a4.css.map": "/abay-joly-game/static/css/main.fb5826a4.css.map",
+    "main.b6abacf4.js.map": "/abay-joly-game/static/js/main.b6abacf4.js.map",
     "453.50236f6b.chunk.js.map": "/abay-joly-game/static/js/453.50236f6b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7545205.css",
-    "static/js/main.a1ccb7ed.js"
+    "static/css/main.fb5826a4.css",
+    "static/js/main.b6abacf4.js"
   ]
 }
